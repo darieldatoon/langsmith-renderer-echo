@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>PostMessage Echo</title>
+        <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura.css" />
+    </head>
+    <body>
+        <h1>PostMessage Messages</h1>
+        <div id="messages"></div>
+        <script>
+            let count = 0;
+            window.addEventListener("message", (event) => {
+                count++;
+                const header = document.createElement("h3");
+                header.appendChild(document.createTextNode(`Message ${count}`));
+                const code = document.createElement("code");
+                code.appendChild(document.createTextNode(JSON.stringify(event.data, null, 2)));
+                const pre = document.createElement("pre");
+                pre.appendChild(code);
+                document.getElementById("messages").appendChild(header);
+                document.getElementById("messages").appendChild(pre);
+            });
+        </script>
+    </body>
+</html>
