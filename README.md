@@ -41,3 +41,9 @@ Run's outputs are `{"answer": "four"}`; the reference output is `{"answer": "4"}
 
 A renderer that needs the inputs, or tells outputs from references by `type`, can't draw
 the compare pane.
+
+| Run page | Compare pane: Outputs | Compare pane: Reference Outputs |
+|---|---|---|
+| ![](screenshots/run-page-output.png) | ![](screenshots/compare-outputs.png) | ![](screenshots/compare-reference-outputs.png) |
+
+The run page shot predates the `"four"` target, so its `data` reads `"4"`; its inputs are the point.
