@@ -24,6 +24,8 @@ Ctrl-C; its URL changes on every run, and `repro.py` re-points the dataset each 
 
 1. **Run page:** open it and switch the output format to Custom.
 2. **Compare pane:** open it, expand the row, switch Outputs and Reference Outputs to Custom.
+3. **Single experiment:** open one `echo-a` experiment, click its row, switch Reference Outputs
+   to Custom.
 
 Per the docs, each message is `{type: "output" | "reference", data, metadata: {inputs}}`,
 with `metadata.inputs` holding the example's inputs (`{"question": "What is 2 + 2?"}`) and
@@ -38,12 +40,16 @@ Run's outputs are `{"answer": "four"}`; the reference output is `{"answer": "4"}
 | Run page → Output | `"output"` | `{"question": "What is 2 + 2?"}` | Yes |
 | Compare pane → Outputs | `"output"` | `{}` | No: inputs missing |
 | Compare pane → Reference Outputs | `"output"` | `{}` | No: wrong type, inputs missing |
+| Single experiment → Reference Outputs | `"output"` | `{"question": "What is 2 + 2?"}` | No: wrong type |
+
+Two bugs. The reference section labels its data `"output"` in both experiment views. The
+compare pane also sends empty inputs.
 
 A renderer that needs the inputs, or tells outputs from references by `type`, can't draw
 the compare pane.
 
-| Run page | Compare pane: Outputs | Compare pane: Reference Outputs |
-|---|---|---|
-| ![](screenshots/run-page-output.png) | ![](screenshots/compare-outputs.png) | ![](screenshots/compare-reference-outputs.png) |
+| Run page | Compare pane: Outputs | Compare pane: Reference Outputs | Single experiment: Reference Outputs |
+|---|---|---|---|
+| ![](screenshots/run-page-output.png) | ![](screenshots/compare-outputs.png) | ![](screenshots/compare-reference-outputs.png) | ![](screenshots/single-experiment-reference-outputs.png) |
 
 The run page shot predates the `"four"` target, so its `data` reads `"4"`; its inputs are the point.
