@@ -15,7 +15,8 @@ DATASET = "renderer-echo-repro"
 
 
 def target(inputs: dict) -> dict:
-    return {"answer": "4"}
+    # Differs from the reference ("4"), so each panel shows which data it was sent.
+    return {"answer": "four"}
 
 
 def main() -> None:

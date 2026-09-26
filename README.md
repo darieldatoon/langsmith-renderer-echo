@@ -28,3 +28,16 @@ Ctrl-C; its URL changes on every run, and `repro.py` re-points the dataset each 
 Per the docs, each message is `{type: "output" | "reference", data, metadata: {inputs}}`,
 with `metadata.inputs` holding the example's inputs (`{"question": "What is 2 + 2?"}`) and
 `type` telling a run's outputs from the reference outputs.
+
+## Results
+
+Run's outputs are `{"answer": "four"}`; the reference output is `{"answer": "4"}`.
+
+| Where | `type` | `metadata.inputs` | Per the docs? |
+|---|---|---|---|
+| Run page → Output | `"output"` | `{"question": "What is 2 + 2?"}` | Yes |
+| Compare pane → Outputs | `"output"` | `{}` | No: inputs missing |
+| Compare pane → Reference Outputs | `"output"` | `{}` | No: wrong type, inputs missing |
+
+A renderer that needs the inputs, or tells outputs from references by `type`, can't draw
+the compare pane.
