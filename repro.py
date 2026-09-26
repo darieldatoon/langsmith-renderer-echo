@@ -55,13 +55,17 @@ def main() -> None:
         for prefix in ("echo-a", "echo-b")
     ]
     ids = ",".join(str(e.experiment_id) for e in experiments)
+    first = experiments[0].experiment_id
     run = next(iter(experiments[0]))["run"]
-    org = dataset.url.split("/datasets/")[0]
+    # The dataset's renderer applies only inside the dataset's pages: a trace opened from an
+    # experiment, not the standalone run page.
+    trace = f"{dataset.url}/compare?selectedSessions={first}&trace={run.id}&peeked_trace_id={run.id}"
 
     print()
-    print(f"Renderer:     {args.renderer_url}")
-    print(f"Run page:     {org}/projects/p/{experiments[0].experiment_id}/r/{run.id}")
-    print(f"Compare pane: {dataset.url}/compare?selectedSessions={ids}")
+    print(f"Renderer:          {args.renderer_url}")
+    print(f"Trace view:        {trace}")
+    print(f"Single experiment: {dataset.url}/compare?selectedSessions={first}")
+    print(f"Compare pane:      {dataset.url}/compare?selectedSessions={ids}")
 
 
 if __name__ == "__main__":
