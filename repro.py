@@ -4,7 +4,7 @@
 # ///
 """A dataset whose custom output renderer is an echo page, and two experiments to compare.
 
-Then compare what the echo page receives on a run page and in the experiment compare pane.
+Then compare what the echo page receives in each experiment view.
 """
 
 import argparse
